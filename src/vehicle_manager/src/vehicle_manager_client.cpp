@@ -32,7 +32,7 @@ void VehicleManagerClient::show_menu() {
 
 std::vector<vehicle_manager::Vehicle> VehicleManagerClient::get_all_vehicles()
 {
-  static std::vector<vehicle_manager::Vehicle> empty_vector;
+  // static std::vector<vehicle_manager::Vehicle> empty_vector;
   vehicle_manager::DisplayAllVehicle srv;
   if (display_all_vehicles.call(srv)) {
     return srv.response.vehicles;
