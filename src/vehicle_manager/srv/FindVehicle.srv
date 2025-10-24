@@ -1,0 +1,5 @@
+string licensePlate
+---
+bool success
+string message
+Vehicle vehicle
