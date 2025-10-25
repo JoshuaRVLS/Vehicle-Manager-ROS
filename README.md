@@ -17,7 +17,7 @@ Simple ROS vehicle management system.
 rosrun vehicle_manager vehicle_manager_server
 
 # Terminal 2 - Client  
-rosrun vehicle_manager vehicle_manager_client
+rosrun vehicle_manager vehicle_manager_node
 ```
 
 ## Usage
