@@ -1,4 +1,5 @@
+uint32 id
 string licensePlate
 string make
 string model
-uint32 year
+string year
