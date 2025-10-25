@@ -1,0 +1,6 @@
+string property
+uint32 vehicle_id 
+string new_value
+---
+bool success 
+string message
