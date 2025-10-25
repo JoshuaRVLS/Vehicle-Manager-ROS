@@ -32,10 +32,10 @@
   "vehicle_manager/DisplayAllVehicleRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<DisplayAllVehicle-request>)))
   "Returns md5sum for a message object of type '<DisplayAllVehicle-request>"
-  "34dc51a34cfcc853d59c1e852e705610")
+  "7972a9cea7f1344cbb3d6fe3b301435d")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'DisplayAllVehicle-request)))
   "Returns md5sum for a message object of type 'DisplayAllVehicle-request"
-  "34dc51a34cfcc853d59c1e852e705610")
+  "7972a9cea7f1344cbb3d6fe3b301435d")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<DisplayAllVehicle-request>)))
   "Returns full string definition for message of type '<DisplayAllVehicle-request>"
   (cl:format cl:nil "~%~%~%"))
@@ -139,16 +139,16 @@
   "vehicle_manager/DisplayAllVehicleResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<DisplayAllVehicle-response>)))
   "Returns md5sum for a message object of type '<DisplayAllVehicle-response>"
-  "34dc51a34cfcc853d59c1e852e705610")
+  "7972a9cea7f1344cbb3d6fe3b301435d")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'DisplayAllVehicle-response)))
   "Returns md5sum for a message object of type 'DisplayAllVehicle-response"
-  "34dc51a34cfcc853d59c1e852e705610")
+  "7972a9cea7f1344cbb3d6fe3b301435d")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<DisplayAllVehicle-response>)))
   "Returns full string definition for message of type '<DisplayAllVehicle-response>"
-  (cl:format cl:nil "bool success~%string message~%Vehicle[] vehicles~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%string licensePlate~%string make~%string model~%uint32 year~%~%"))
+  (cl:format cl:nil "bool success~%string message~%Vehicle[] vehicles~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%uint32 id~%string licensePlate~%string make~%string model~%string year~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'DisplayAllVehicle-response)))
   "Returns full string definition for message of type 'DisplayAllVehicle-response"
-  (cl:format cl:nil "bool success~%string message~%Vehicle[] vehicles~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%string licensePlate~%string make~%string model~%uint32 year~%~%"))
+  (cl:format cl:nil "bool success~%string message~%Vehicle[] vehicles~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%uint32 id~%string licensePlate~%string make~%string model~%string year~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <DisplayAllVehicle-response>))
   (cl:+ 0
      1

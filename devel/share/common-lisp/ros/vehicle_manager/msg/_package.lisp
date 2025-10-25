@@ -3,7 +3,5 @@
   (:export
    "<VEHICLE>"
    "VEHICLE"
-   "<VEHICLEARRAY>"
-   "VEHICLEARRAY"
   ))
 

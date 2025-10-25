@@ -18,12 +18,19 @@ class Vehicle {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
+      this.id = null;
       this.licensePlate = null;
       this.make = null;
       this.model = null;
       this.year = null;
     }
     else {
+      if (initObj.hasOwnProperty('id')) {
+        this.id = initObj.id
+      }
+      else {
+        this.id = 0;
+      }
       if (initObj.hasOwnProperty('licensePlate')) {
         this.licensePlate = initObj.licensePlate
       }
@@ -46,13 +53,15 @@ class Vehicle {
         this.year = initObj.year
       }
       else {
-        this.year = 0;
+        this.year = '';
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type Vehicle
+    // Serialize message field [id]
+    bufferOffset = _serializer.uint32(obj.id, buffer, bufferOffset);
     // Serialize message field [licensePlate]
     bufferOffset = _serializer.string(obj.licensePlate, buffer, bufferOffset);
     // Serialize message field [make]
@@ -60,7 +69,7 @@ class Vehicle {
     // Serialize message field [model]
     bufferOffset = _serializer.string(obj.model, buffer, bufferOffset);
     // Serialize message field [year]
-    bufferOffset = _serializer.uint32(obj.year, buffer, bufferOffset);
+    bufferOffset = _serializer.string(obj.year, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -68,6 +77,8 @@ class Vehicle {
     //deserializes a message object of type Vehicle
     let len;
     let data = new Vehicle(null);
+    // Deserialize message field [id]
+    data.id = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [licensePlate]
     data.licensePlate = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [make]
@@ -75,7 +86,7 @@ class Vehicle {
     // Deserialize message field [model]
     data.model = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [year]
-    data.year = _deserializer.uint32(buffer, bufferOffset);
+    data.year = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
@@ -84,7 +95,8 @@ class Vehicle {
     length += _getByteLength(object.licensePlate);
     length += _getByteLength(object.make);
     length += _getByteLength(object.model);
-    return length + 16;
+    length += _getByteLength(object.year);
+    return length + 20;
   }
 
   static datatype() {
@@ -94,16 +106,17 @@ class Vehicle {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '479b39ca288c27764f2c6215160e4663';
+    return 'aeb645e39b7cf2fd517a911deb29ad01';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
+    uint32 id
     string licensePlate
     string make
     string model
-    uint32 year
+    string year
     `;
   }
 
@@ -113,6 +126,13 @@ class Vehicle {
       msg = {};
     }
     const resolved = new Vehicle(null);
+    if (msg.id !== undefined) {
+      resolved.id = msg.id;
+    }
+    else {
+      resolved.id = 0
+    }
+
     if (msg.licensePlate !== undefined) {
       resolved.licensePlate = msg.licensePlate;
     }
@@ -138,7 +158,7 @@ class Vehicle {
       resolved.year = msg.year;
     }
     else {
-      resolved.year = 0
+      resolved.year = ''
     }
 
     return resolved;

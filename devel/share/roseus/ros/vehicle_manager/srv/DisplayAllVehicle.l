@@ -120,7 +120,7 @@
   :super ros::object
   :slots ())
 
-(setf (get vehicle_manager::DisplayAllVehicle :md5sum-) "34dc51a34cfcc853d59c1e852e705610")
+(setf (get vehicle_manager::DisplayAllVehicle :md5sum-) "7972a9cea7f1344cbb3d6fe3b301435d")
 (setf (get vehicle_manager::DisplayAllVehicle :datatype-) "vehicle_manager/DisplayAllVehicle")
 (setf (get vehicle_manager::DisplayAllVehicle :request) vehicle_manager::DisplayAllVehicleRequest)
 (setf (get vehicle_manager::DisplayAllVehicle :response) vehicle_manager::DisplayAllVehicleResponse)
@@ -128,7 +128,7 @@
 (defmethod vehicle_manager::DisplayAllVehicleRequest
   (:response () (instance vehicle_manager::DisplayAllVehicleResponse :init)))
 
-(setf (get vehicle_manager::DisplayAllVehicleRequest :md5sum-) "34dc51a34cfcc853d59c1e852e705610")
+(setf (get vehicle_manager::DisplayAllVehicleRequest :md5sum-) "7972a9cea7f1344cbb3d6fe3b301435d")
 (setf (get vehicle_manager::DisplayAllVehicleRequest :datatype-) "vehicle_manager/DisplayAllVehicleRequest")
 (setf (get vehicle_manager::DisplayAllVehicleRequest :definition-)
       "
@@ -139,12 +139,13 @@ Vehicle[] vehicles
 
 ================================================================================
 MSG: vehicle_manager/Vehicle
+uint32 id
 string licensePlate
 string make
 string model
 ")
 
-(setf (get vehicle_manager::DisplayAllVehicleResponse :md5sum-) "34dc51a34cfcc853d59c1e852e705610")
+(setf (get vehicle_manager::DisplayAllVehicleResponse :md5sum-) "7972a9cea7f1344cbb3d6fe3b301435d")
 (setf (get vehicle_manager::DisplayAllVehicleResponse :datatype-) "vehicle_manager/DisplayAllVehicleResponse")
 (setf (get vehicle_manager::DisplayAllVehicleResponse :definition-)
       "
@@ -155,6 +156,7 @@ Vehicle[] vehicles
 
 ================================================================================
 MSG: vehicle_manager/Vehicle
+uint32 id
 string licensePlate
 string make
 string model
@@ -162,6 +164,6 @@ string model
 
 
 
-(provide :vehicle_manager/DisplayAllVehicle "34dc51a34cfcc853d59c1e852e705610")
+(provide :vehicle_manager/DisplayAllVehicle "7972a9cea7f1344cbb3d6fe3b301435d")
 
 

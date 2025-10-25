@@ -122,7 +122,7 @@
   :super ros::object
   :slots ())
 
-(setf (get vehicle_manager::FindVehicle :md5sum-) "4a85880fc8ab4e0e9fa8688f0b93aaf9")
+(setf (get vehicle_manager::FindVehicle :md5sum-) "b36034dc7d45586e0c9a9301ebcb2c04")
 (setf (get vehicle_manager::FindVehicle :datatype-) "vehicle_manager/FindVehicle")
 (setf (get vehicle_manager::FindVehicle :request) vehicle_manager::FindVehicleRequest)
 (setf (get vehicle_manager::FindVehicle :response) vehicle_manager::FindVehicleResponse)
@@ -130,7 +130,7 @@
 (defmethod vehicle_manager::FindVehicleRequest
   (:response () (instance vehicle_manager::FindVehicleResponse :init)))
 
-(setf (get vehicle_manager::FindVehicleRequest :md5sum-) "4a85880fc8ab4e0e9fa8688f0b93aaf9")
+(setf (get vehicle_manager::FindVehicleRequest :md5sum-) "b36034dc7d45586e0c9a9301ebcb2c04")
 (setf (get vehicle_manager::FindVehicleRequest :datatype-) "vehicle_manager/FindVehicleRequest")
 (setf (get vehicle_manager::FindVehicleRequest :definition-)
       "string licensePlate
@@ -141,12 +141,13 @@ Vehicle vehicle
 
 ================================================================================
 MSG: vehicle_manager/Vehicle
+uint32 id
 string licensePlate
 string make
 string model
 ")
 
-(setf (get vehicle_manager::FindVehicleResponse :md5sum-) "4a85880fc8ab4e0e9fa8688f0b93aaf9")
+(setf (get vehicle_manager::FindVehicleResponse :md5sum-) "b36034dc7d45586e0c9a9301ebcb2c04")
 (setf (get vehicle_manager::FindVehicleResponse :datatype-) "vehicle_manager/FindVehicleResponse")
 (setf (get vehicle_manager::FindVehicleResponse :definition-)
       "string licensePlate
@@ -157,6 +158,7 @@ Vehicle vehicle
 
 ================================================================================
 MSG: vehicle_manager/Vehicle
+uint32 id
 string licensePlate
 string make
 string model
@@ -164,6 +166,6 @@ string model
 
 
 
-(provide :vehicle_manager/FindVehicle "4a85880fc8ab4e0e9fa8688f0b93aaf9")
+(provide :vehicle_manager/FindVehicle "b36034dc7d45586e0c9a9301ebcb2c04")
 
 

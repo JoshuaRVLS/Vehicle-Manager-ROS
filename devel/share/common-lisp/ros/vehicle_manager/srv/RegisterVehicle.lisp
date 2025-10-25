@@ -67,16 +67,16 @@
   "vehicle_manager/RegisterVehicleRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<RegisterVehicle-request>)))
   "Returns md5sum for a message object of type '<RegisterVehicle-request>"
-  "1a7db87ef6c91617de5c2158e1a2248c")
+  "00a0a814922db1043c61a97c21d2aa61")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'RegisterVehicle-request)))
   "Returns md5sum for a message object of type 'RegisterVehicle-request"
-  "1a7db87ef6c91617de5c2158e1a2248c")
+  "00a0a814922db1043c61a97c21d2aa61")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<RegisterVehicle-request>)))
   "Returns full string definition for message of type '<RegisterVehicle-request>"
-  (cl:format cl:nil "Vehicle vehicle ~%string command~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%string licensePlate~%string make~%string model~%uint32 year~%~%"))
+  (cl:format cl:nil "Vehicle vehicle ~%string command~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%uint32 id~%string licensePlate~%string make~%string model~%string year~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'RegisterVehicle-request)))
   "Returns full string definition for message of type 'RegisterVehicle-request"
-  (cl:format cl:nil "Vehicle vehicle ~%string command~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%string licensePlate~%string make~%string model~%uint32 year~%~%"))
+  (cl:format cl:nil "Vehicle vehicle ~%string command~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%uint32 id~%string licensePlate~%string make~%string model~%string year~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <RegisterVehicle-request>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'vehicle))
@@ -151,10 +151,10 @@
   "vehicle_manager/RegisterVehicleResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<RegisterVehicle-response>)))
   "Returns md5sum for a message object of type '<RegisterVehicle-response>"
-  "1a7db87ef6c91617de5c2158e1a2248c")
+  "00a0a814922db1043c61a97c21d2aa61")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'RegisterVehicle-response)))
   "Returns md5sum for a message object of type 'RegisterVehicle-response"
-  "1a7db87ef6c91617de5c2158e1a2248c")
+  "00a0a814922db1043c61a97c21d2aa61")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<RegisterVehicle-response>)))
   "Returns full string definition for message of type '<RegisterVehicle-response>"
   (cl:format cl:nil "bool success~%string message~%~%~%"))

@@ -159,7 +159,7 @@ class FindVehicleResponse {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '4767fa5567382080303c4affeb8eaf62';
+    return '197a862dba0bde4e848cef8e0b6fa37b';
   }
 
   static messageDefinition() {
@@ -171,10 +171,11 @@ class FindVehicleResponse {
     
     ================================================================================
     MSG: vehicle_manager/Vehicle
+    uint32 id
     string licensePlate
     string make
     string model
-    uint32 year
+    string year
     `;
   }
 
@@ -212,6 +213,6 @@ class FindVehicleResponse {
 module.exports = {
   Request: FindVehicleRequest,
   Response: FindVehicleResponse,
-  md5sum() { return '4a85880fc8ab4e0e9fa8688f0b93aaf9'; },
+  md5sum() { return 'b36034dc7d45586e0c9a9301ebcb2c04'; },
   datatype() { return 'vehicle_manager/FindVehicle'; }
 };

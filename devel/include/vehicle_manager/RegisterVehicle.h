@@ -40,7 +40,7 @@ template<>
 struct MD5Sum< ::vehicle_manager::RegisterVehicle > {
   static const char* value()
   {
-    return "1a7db87ef6c91617de5c2158e1a2248c";
+    return "00a0a814922db1043c61a97c21d2aa61";
   }
 
   static const char* value(const ::vehicle_manager::RegisterVehicle&) { return value(); }

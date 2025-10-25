@@ -14,49 +14,86 @@ const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
-let Vehicle = require('../msg/Vehicle.js');
 
 //-----------------------------------------------------------
 
-class DisplayAllVehicleRequest {
+class EditVehicleRequest {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
+      this.property = null;
+      this.vehicle_id = null;
+      this.new_value = null;
     }
     else {
+      if (initObj.hasOwnProperty('property')) {
+        this.property = initObj.property
+      }
+      else {
+        this.property = '';
+      }
+      if (initObj.hasOwnProperty('vehicle_id')) {
+        this.vehicle_id = initObj.vehicle_id
+      }
+      else {
+        this.vehicle_id = 0;
+      }
+      if (initObj.hasOwnProperty('new_value')) {
+        this.new_value = initObj.new_value
+      }
+      else {
+        this.new_value = '';
+      }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
-    // Serializes a message object of type DisplayAllVehicleRequest
+    // Serializes a message object of type EditVehicleRequest
+    // Serialize message field [property]
+    bufferOffset = _serializer.string(obj.property, buffer, bufferOffset);
+    // Serialize message field [vehicle_id]
+    bufferOffset = _serializer.uint32(obj.vehicle_id, buffer, bufferOffset);
+    // Serialize message field [new_value]
+    bufferOffset = _serializer.string(obj.new_value, buffer, bufferOffset);
     return bufferOffset;
   }
 
   static deserialize(buffer, bufferOffset=[0]) {
-    //deserializes a message object of type DisplayAllVehicleRequest
+    //deserializes a message object of type EditVehicleRequest
     let len;
-    let data = new DisplayAllVehicleRequest(null);
+    let data = new EditVehicleRequest(null);
+    // Deserialize message field [property]
+    data.property = _deserializer.string(buffer, bufferOffset);
+    // Deserialize message field [vehicle_id]
+    data.vehicle_id = _deserializer.uint32(buffer, bufferOffset);
+    // Deserialize message field [new_value]
+    data.new_value = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 0;
+    let length = 0;
+    length += _getByteLength(object.property);
+    length += _getByteLength(object.new_value);
+    return length + 12;
   }
 
   static datatype() {
     // Returns string type for a service object
-    return 'vehicle_manager/DisplayAllVehicleRequest';
+    return 'vehicle_manager/EditVehicleRequest';
   }
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'd41d8cd98f00b204e9800998ecf8427e';
+    return '9ef4be790a0b331cf4ab6036dc81734b';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    string property
+    uint32 vehicle_id 
+    string new_value
     
     `;
   }
@@ -66,18 +103,38 @@ class DisplayAllVehicleRequest {
     if (typeof msg !== 'object' || msg === null) {
       msg = {};
     }
-    const resolved = new DisplayAllVehicleRequest(null);
+    const resolved = new EditVehicleRequest(null);
+    if (msg.property !== undefined) {
+      resolved.property = msg.property;
+    }
+    else {
+      resolved.property = ''
+    }
+
+    if (msg.vehicle_id !== undefined) {
+      resolved.vehicle_id = msg.vehicle_id;
+    }
+    else {
+      resolved.vehicle_id = 0
+    }
+
+    if (msg.new_value !== undefined) {
+      resolved.new_value = msg.new_value;
+    }
+    else {
+      resolved.new_value = ''
+    }
+
     return resolved;
     }
 };
 
-class DisplayAllVehicleResponse {
+class EditVehicleResponse {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.success = null;
       this.message = null;
-      this.vehicles = null;
     }
     else {
       if (initObj.hasOwnProperty('success')) {
@@ -92,81 +149,51 @@ class DisplayAllVehicleResponse {
       else {
         this.message = '';
       }
-      if (initObj.hasOwnProperty('vehicles')) {
-        this.vehicles = initObj.vehicles
-      }
-      else {
-        this.vehicles = [];
-      }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
-    // Serializes a message object of type DisplayAllVehicleResponse
+    // Serializes a message object of type EditVehicleResponse
     // Serialize message field [success]
     bufferOffset = _serializer.bool(obj.success, buffer, bufferOffset);
     // Serialize message field [message]
     bufferOffset = _serializer.string(obj.message, buffer, bufferOffset);
-    // Serialize message field [vehicles]
-    // Serialize the length for message field [vehicles]
-    bufferOffset = _serializer.uint32(obj.vehicles.length, buffer, bufferOffset);
-    obj.vehicles.forEach((val) => {
-      bufferOffset = Vehicle.serialize(val, buffer, bufferOffset);
-    });
     return bufferOffset;
   }
 
   static deserialize(buffer, bufferOffset=[0]) {
-    //deserializes a message object of type DisplayAllVehicleResponse
+    //deserializes a message object of type EditVehicleResponse
     let len;
-    let data = new DisplayAllVehicleResponse(null);
+    let data = new EditVehicleResponse(null);
     // Deserialize message field [success]
     data.success = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [message]
     data.message = _deserializer.string(buffer, bufferOffset);
-    // Deserialize message field [vehicles]
-    // Deserialize array length for message field [vehicles]
-    len = _deserializer.uint32(buffer, bufferOffset);
-    data.vehicles = new Array(len);
-    for (let i = 0; i < len; ++i) {
-      data.vehicles[i] = Vehicle.deserialize(buffer, bufferOffset)
-    }
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += _getByteLength(object.message);
-    object.vehicles.forEach((val) => {
-      length += Vehicle.getMessageSize(val);
-    });
-    return length + 9;
+    return length + 5;
   }
 
   static datatype() {
     // Returns string type for a service object
-    return 'vehicle_manager/DisplayAllVehicleResponse';
+    return 'vehicle_manager/EditVehicleResponse';
   }
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '7972a9cea7f1344cbb3d6fe3b301435d';
+    return '937c9679a518e3a18d831e57125ea522';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    bool success
+    bool success 
     string message
-    Vehicle[] vehicles
     
-    ================================================================================
-    MSG: vehicle_manager/Vehicle
-    uint32 id
-    string licensePlate
-    string make
-    string model
-    string year
     `;
   }
 
@@ -175,7 +202,7 @@ class DisplayAllVehicleResponse {
     if (typeof msg !== 'object' || msg === null) {
       msg = {};
     }
-    const resolved = new DisplayAllVehicleResponse(null);
+    const resolved = new EditVehicleResponse(null);
     if (msg.success !== undefined) {
       resolved.success = msg.success;
     }
@@ -190,23 +217,13 @@ class DisplayAllVehicleResponse {
       resolved.message = ''
     }
 
-    if (msg.vehicles !== undefined) {
-      resolved.vehicles = new Array(msg.vehicles.length);
-      for (let i = 0; i < resolved.vehicles.length; ++i) {
-        resolved.vehicles[i] = Vehicle.Resolve(msg.vehicles[i]);
-      }
-    }
-    else {
-      resolved.vehicles = []
-    }
-
     return resolved;
     }
 };
 
 module.exports = {
-  Request: DisplayAllVehicleRequest,
-  Response: DisplayAllVehicleResponse,
-  md5sum() { return '7972a9cea7f1344cbb3d6fe3b301435d'; },
-  datatype() { return 'vehicle_manager/DisplayAllVehicle'; }
+  Request: EditVehicleRequest,
+  Response: EditVehicleResponse,
+  md5sum() { return 'c1e037ffea88992a21a708541cb21c87'; },
+  datatype() { return 'vehicle_manager/EditVehicle'; }
 };

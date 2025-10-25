@@ -14,22 +14,27 @@
 
 (defclass vehicle_manager::Vehicle
   :super ros::object
-  :slots (_licensePlate _make _model _year ))
+  :slots (_id _licensePlate _make _model _year ))
 
 (defmethod vehicle_manager::Vehicle
   (:init
    (&key
+    ((:id __id) 0)
     ((:licensePlate __licensePlate) "")
     ((:make __make) "")
     ((:model __model) "")
-    ((:year __year) 0)
+    ((:year __year) "")
     )
    (send-super :init)
+   (setq _id (round __id))
    (setq _licensePlate (string __licensePlate))
    (setq _make (string __make))
    (setq _model (string __model))
-   (setq _year (round __year))
+   (setq _year (string __year))
    self)
+  (:id
+   (&optional __id)
+   (if __id (setq _id __id)) _id)
   (:licensePlate
    (&optional __licensePlate)
    (if __licensePlate (setq _licensePlate __licensePlate)) _licensePlate)
@@ -45,54 +50,61 @@
   (:serialization-length
    ()
    (+
+    ;; uint32 _id
+    4
     ;; string _licensePlate
     4 (length _licensePlate)
     ;; string _make
     4 (length _make)
     ;; string _model
     4 (length _model)
-    ;; uint32 _year
-    4
+    ;; string _year
+    4 (length _year)
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
+     ;; uint32 _id
+       (write-long _id s)
      ;; string _licensePlate
        (write-long (length _licensePlate) s) (princ _licensePlate s)
      ;; string _make
        (write-long (length _make) s) (princ _make s)
      ;; string _model
        (write-long (length _model) s) (princ _model s)
-     ;; uint32 _year
-       (write-long _year s)
+     ;; string _year
+       (write-long (length _year) s) (princ _year s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
+   ;; uint32 _id
+     (setq _id (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; string _licensePlate
      (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _licensePlate (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;; string _make
      (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _make (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;; string _model
      (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _model (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
-   ;; uint32 _year
-     (setq _year (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; string _year
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _year (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;;
    self)
   )
 
-(setf (get vehicle_manager::Vehicle :md5sum-) "479b39ca288c27764f2c6215160e4663")
+(setf (get vehicle_manager::Vehicle :md5sum-) "aeb645e39b7cf2fd517a911deb29ad01")
 (setf (get vehicle_manager::Vehicle :datatype-) "vehicle_manager/Vehicle")
 (setf (get vehicle_manager::Vehicle :definition-)
-      "string licensePlate
+      "uint32 id
+string licensePlate
 string make
 string model
-uint32 year
+string year
 ")
 
 
 
-(provide :vehicle_manager/Vehicle "479b39ca288c27764f2c6215160e4663")
+(provide :vehicle_manager/Vehicle "aeb645e39b7cf2fd517a911deb29ad01")
 
 

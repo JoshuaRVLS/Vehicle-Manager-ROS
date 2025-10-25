@@ -135,12 +135,12 @@ struct MD5Sum< ::vehicle_manager::DisplayAllVehicleResponse_<ContainerAllocator>
 {
   static const char* value()
   {
-    return "34dc51a34cfcc853d59c1e852e705610";
+    return "7972a9cea7f1344cbb3d6fe3b301435d";
   }
 
   static const char* value(const ::vehicle_manager::DisplayAllVehicleResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x34dc51a34cfcc853ULL;
-  static const uint64_t static_value2 = 0xd59c1e852e705610ULL;
+  static const uint64_t static_value1 = 0x7972a9cea7f1344cULL;
+  static const uint64_t static_value2 = 0xbb3d6fe3b301435dULL;
 };
 
 template<class ContainerAllocator>
@@ -165,10 +165,11 @@ struct Definition< ::vehicle_manager::DisplayAllVehicleResponse_<ContainerAlloca
 "\n"
 "================================================================================\n"
 "MSG: vehicle_manager/Vehicle\n"
+"uint32 id\n"
 "string licensePlate\n"
 "string make\n"
 "string model\n"
-"uint32 year\n"
+"string year\n"
 ;
   }
 

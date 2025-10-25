@@ -24,20 +24,25 @@ struct Vehicle_
   typedef Vehicle_<ContainerAllocator> Type;
 
   Vehicle_()
-    : licensePlate()
+    : id(0)
+    , licensePlate()
     , make()
     , model()
-    , year(0)  {
+    , year()  {
     }
   Vehicle_(const ContainerAllocator& _alloc)
-    : licensePlate(_alloc)
+    : id(0)
+    , licensePlate(_alloc)
     , make(_alloc)
     , model(_alloc)
-    , year(0)  {
+    , year(_alloc)  {
   (void)_alloc;
     }
 
 
+
+   typedef uint32_t _id_type;
+  _id_type id;
 
    typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _licensePlate_type;
   _licensePlate_type licensePlate;
@@ -48,7 +53,7 @@ struct Vehicle_
    typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _model_type;
   _model_type model;
 
-   typedef uint32_t _year_type;
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _year_type;
   _year_type year;
 
 
@@ -80,7 +85,8 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::vehicle_manager::Vehicle_<ContainerAllocator1> & lhs, const ::vehicle_manager::Vehicle_<ContainerAllocator2> & rhs)
 {
-  return lhs.licensePlate == rhs.licensePlate &&
+  return lhs.id == rhs.id &&
+    lhs.licensePlate == rhs.licensePlate &&
     lhs.make == rhs.make &&
     lhs.model == rhs.model &&
     lhs.year == rhs.year;
@@ -140,12 +146,12 @@ struct MD5Sum< ::vehicle_manager::Vehicle_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "479b39ca288c27764f2c6215160e4663";
+    return "aeb645e39b7cf2fd517a911deb29ad01";
   }
 
   static const char* value(const ::vehicle_manager::Vehicle_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x479b39ca288c2776ULL;
-  static const uint64_t static_value2 = 0x4f2c6215160e4663ULL;
+  static const uint64_t static_value1 = 0xaeb645e39b7cf2fdULL;
+  static const uint64_t static_value2 = 0x517a911deb29ad01ULL;
 };
 
 template<class ContainerAllocator>
@@ -164,10 +170,11 @@ struct Definition< ::vehicle_manager::Vehicle_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "string licensePlate\n"
+    return "uint32 id\n"
+"string licensePlate\n"
 "string make\n"
 "string model\n"
-"uint32 year\n"
+"string year\n"
 ;
   }
 
@@ -186,6 +193,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
+      stream.next(m.id);
       stream.next(m.licensePlate);
       stream.next(m.make);
       stream.next(m.model);
@@ -210,6 +218,10 @@ struct Printer< ::vehicle_manager::Vehicle_<ContainerAllocator> >
   {
     if (false || !indent.empty())
       s << std::endl;
+    s << indent << "id: ";
+    Printer<uint32_t>::stream(s, indent + "  ", v.id);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "licensePlate: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.licensePlate);
     if (true || !indent.empty())
@@ -223,7 +235,7 @@ struct Printer< ::vehicle_manager::Vehicle_<ContainerAllocator> >
     if (true || !indent.empty())
       s << std::endl;
     s << indent << "year: ";
-    Printer<uint32_t>::stream(s, indent + "  ", v.year);
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.year);
   }
 };
 

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(vehicle_manager)
 
-//add_compile_options(-std=c++11)
+# //add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -19,6 +19,8 @@ add_service_files(
   RegisterVehicle.srv
   DisplayAllVehicle.srv
   FindVehicle.srv
+  EditVehicle.srv
+  DeleteVehicle.srv
 )
 
 generate_messages(

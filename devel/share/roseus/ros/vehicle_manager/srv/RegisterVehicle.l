@@ -122,7 +122,7 @@
   :super ros::object
   :slots ())
 
-(setf (get vehicle_manager::RegisterVehicle :md5sum-) "1a7db87ef6c91617de5c2158e1a2248c")
+(setf (get vehicle_manager::RegisterVehicle :md5sum-) "00a0a814922db1043c61a97c21d2aa61")
 (setf (get vehicle_manager::RegisterVehicle :datatype-) "vehicle_manager/RegisterVehicle")
 (setf (get vehicle_manager::RegisterVehicle :request) vehicle_manager::RegisterVehicleRequest)
 (setf (get vehicle_manager::RegisterVehicle :response) vehicle_manager::RegisterVehicleResponse)
@@ -130,7 +130,7 @@
 (defmethod vehicle_manager::RegisterVehicleRequest
   (:response () (instance vehicle_manager::RegisterVehicleResponse :init)))
 
-(setf (get vehicle_manager::RegisterVehicleRequest :md5sum-) "1a7db87ef6c91617de5c2158e1a2248c")
+(setf (get vehicle_manager::RegisterVehicleRequest :md5sum-) "00a0a814922db1043c61a97c21d2aa61")
 (setf (get vehicle_manager::RegisterVehicleRequest :datatype-) "vehicle_manager/RegisterVehicleRequest")
 (setf (get vehicle_manager::RegisterVehicleRequest :definition-)
       "Vehicle vehicle 
@@ -138,6 +138,7 @@ string command
 
 ================================================================================
 MSG: vehicle_manager/Vehicle
+uint32 id
 string licensePlate
 string make
 string model
@@ -146,7 +147,7 @@ bool success
 string message
 ")
 
-(setf (get vehicle_manager::RegisterVehicleResponse :md5sum-) "1a7db87ef6c91617de5c2158e1a2248c")
+(setf (get vehicle_manager::RegisterVehicleResponse :md5sum-) "00a0a814922db1043c61a97c21d2aa61")
 (setf (get vehicle_manager::RegisterVehicleResponse :datatype-) "vehicle_manager/RegisterVehicleResponse")
 (setf (get vehicle_manager::RegisterVehicleResponse :definition-)
       "Vehicle vehicle 
@@ -154,6 +155,7 @@ string command
 
 ================================================================================
 MSG: vehicle_manager/Vehicle
+uint32 id
 string licensePlate
 string make
 string model
@@ -164,6 +166,6 @@ string message
 
 
 
-(provide :vehicle_manager/RegisterVehicle "1a7db87ef6c91617de5c2158e1a2248c")
+(provide :vehicle_manager/RegisterVehicle "00a0a814922db1043c61a97c21d2aa61")
 
 

@@ -14,49 +14,59 @@ const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
-let Vehicle = require('../msg/Vehicle.js');
 
 //-----------------------------------------------------------
 
-class DisplayAllVehicleRequest {
+class DeleteVehicleRequest {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
+      this.vehicle_id = null;
     }
     else {
+      if (initObj.hasOwnProperty('vehicle_id')) {
+        this.vehicle_id = initObj.vehicle_id
+      }
+      else {
+        this.vehicle_id = 0;
+      }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
-    // Serializes a message object of type DisplayAllVehicleRequest
+    // Serializes a message object of type DeleteVehicleRequest
+    // Serialize message field [vehicle_id]
+    bufferOffset = _serializer.uint32(obj.vehicle_id, buffer, bufferOffset);
     return bufferOffset;
   }
 
   static deserialize(buffer, bufferOffset=[0]) {
-    //deserializes a message object of type DisplayAllVehicleRequest
+    //deserializes a message object of type DeleteVehicleRequest
     let len;
-    let data = new DisplayAllVehicleRequest(null);
+    let data = new DeleteVehicleRequest(null);
+    // Deserialize message field [vehicle_id]
+    data.vehicle_id = _deserializer.uint32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 0;
+    return 4;
   }
 
   static datatype() {
     // Returns string type for a service object
-    return 'vehicle_manager/DisplayAllVehicleRequest';
+    return 'vehicle_manager/DeleteVehicleRequest';
   }
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'd41d8cd98f00b204e9800998ecf8427e';
+    return '5c96f4b8297034815b56c1d26627cd99';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    uint32 vehicle_id 
     
     `;
   }
@@ -66,18 +76,24 @@ class DisplayAllVehicleRequest {
     if (typeof msg !== 'object' || msg === null) {
       msg = {};
     }
-    const resolved = new DisplayAllVehicleRequest(null);
+    const resolved = new DeleteVehicleRequest(null);
+    if (msg.vehicle_id !== undefined) {
+      resolved.vehicle_id = msg.vehicle_id;
+    }
+    else {
+      resolved.vehicle_id = 0
+    }
+
     return resolved;
     }
 };
 
-class DisplayAllVehicleResponse {
+class DeleteVehicleResponse {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.success = null;
       this.message = null;
-      this.vehicles = null;
     }
     else {
       if (initObj.hasOwnProperty('success')) {
@@ -92,65 +108,43 @@ class DisplayAllVehicleResponse {
       else {
         this.message = '';
       }
-      if (initObj.hasOwnProperty('vehicles')) {
-        this.vehicles = initObj.vehicles
-      }
-      else {
-        this.vehicles = [];
-      }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
-    // Serializes a message object of type DisplayAllVehicleResponse
+    // Serializes a message object of type DeleteVehicleResponse
     // Serialize message field [success]
     bufferOffset = _serializer.bool(obj.success, buffer, bufferOffset);
     // Serialize message field [message]
     bufferOffset = _serializer.string(obj.message, buffer, bufferOffset);
-    // Serialize message field [vehicles]
-    // Serialize the length for message field [vehicles]
-    bufferOffset = _serializer.uint32(obj.vehicles.length, buffer, bufferOffset);
-    obj.vehicles.forEach((val) => {
-      bufferOffset = Vehicle.serialize(val, buffer, bufferOffset);
-    });
     return bufferOffset;
   }
 
   static deserialize(buffer, bufferOffset=[0]) {
-    //deserializes a message object of type DisplayAllVehicleResponse
+    //deserializes a message object of type DeleteVehicleResponse
     let len;
-    let data = new DisplayAllVehicleResponse(null);
+    let data = new DeleteVehicleResponse(null);
     // Deserialize message field [success]
     data.success = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [message]
     data.message = _deserializer.string(buffer, bufferOffset);
-    // Deserialize message field [vehicles]
-    // Deserialize array length for message field [vehicles]
-    len = _deserializer.uint32(buffer, bufferOffset);
-    data.vehicles = new Array(len);
-    for (let i = 0; i < len; ++i) {
-      data.vehicles[i] = Vehicle.deserialize(buffer, bufferOffset)
-    }
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += _getByteLength(object.message);
-    object.vehicles.forEach((val) => {
-      length += Vehicle.getMessageSize(val);
-    });
-    return length + 9;
+    return length + 5;
   }
 
   static datatype() {
     // Returns string type for a service object
-    return 'vehicle_manager/DisplayAllVehicleResponse';
+    return 'vehicle_manager/DeleteVehicleResponse';
   }
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '7972a9cea7f1344cbb3d6fe3b301435d';
+    return '937c9679a518e3a18d831e57125ea522';
   }
 
   static messageDefinition() {
@@ -158,15 +152,7 @@ class DisplayAllVehicleResponse {
     return `
     bool success
     string message
-    Vehicle[] vehicles
     
-    ================================================================================
-    MSG: vehicle_manager/Vehicle
-    uint32 id
-    string licensePlate
-    string make
-    string model
-    string year
     `;
   }
 
@@ -175,7 +161,7 @@ class DisplayAllVehicleResponse {
     if (typeof msg !== 'object' || msg === null) {
       msg = {};
     }
-    const resolved = new DisplayAllVehicleResponse(null);
+    const resolved = new DeleteVehicleResponse(null);
     if (msg.success !== undefined) {
       resolved.success = msg.success;
     }
@@ -190,23 +176,13 @@ class DisplayAllVehicleResponse {
       resolved.message = ''
     }
 
-    if (msg.vehicles !== undefined) {
-      resolved.vehicles = new Array(msg.vehicles.length);
-      for (let i = 0; i < resolved.vehicles.length; ++i) {
-        resolved.vehicles[i] = Vehicle.Resolve(msg.vehicles[i]);
-      }
-    }
-    else {
-      resolved.vehicles = []
-    }
-
     return resolved;
     }
 };
 
 module.exports = {
-  Request: DisplayAllVehicleRequest,
-  Response: DisplayAllVehicleResponse,
-  md5sum() { return '7972a9cea7f1344cbb3d6fe3b301435d'; },
-  datatype() { return 'vehicle_manager/DisplayAllVehicle'; }
+  Request: DeleteVehicleRequest,
+  Response: DeleteVehicleResponse,
+  md5sum() { return '26021b5c78adc94a5ca3e835030134b8'; },
+  datatype() { return 'vehicle_manager/DeleteVehicle'; }
 };

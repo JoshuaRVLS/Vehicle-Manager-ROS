@@ -55,10 +55,10 @@
   "vehicle_manager/FindVehicleRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<FindVehicle-request>)))
   "Returns md5sum for a message object of type '<FindVehicle-request>"
-  "4a85880fc8ab4e0e9fa8688f0b93aaf9")
+  "b36034dc7d45586e0c9a9301ebcb2c04")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'FindVehicle-request)))
   "Returns md5sum for a message object of type 'FindVehicle-request"
-  "4a85880fc8ab4e0e9fa8688f0b93aaf9")
+  "b36034dc7d45586e0c9a9301ebcb2c04")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<FindVehicle-request>)))
   "Returns full string definition for message of type '<FindVehicle-request>"
   (cl:format cl:nil "string licensePlate~%~%~%"))
@@ -149,16 +149,16 @@
   "vehicle_manager/FindVehicleResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<FindVehicle-response>)))
   "Returns md5sum for a message object of type '<FindVehicle-response>"
-  "4a85880fc8ab4e0e9fa8688f0b93aaf9")
+  "b36034dc7d45586e0c9a9301ebcb2c04")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'FindVehicle-response)))
   "Returns md5sum for a message object of type 'FindVehicle-response"
-  "4a85880fc8ab4e0e9fa8688f0b93aaf9")
+  "b36034dc7d45586e0c9a9301ebcb2c04")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<FindVehicle-response>)))
   "Returns full string definition for message of type '<FindVehicle-response>"
-  (cl:format cl:nil "bool success~%string message~%Vehicle vehicle~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%string licensePlate~%string make~%string model~%uint32 year~%~%"))
+  (cl:format cl:nil "bool success~%string message~%Vehicle vehicle~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%uint32 id~%string licensePlate~%string make~%string model~%string year~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'FindVehicle-response)))
   "Returns full string definition for message of type 'FindVehicle-response"
-  (cl:format cl:nil "bool success~%string message~%Vehicle vehicle~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%string licensePlate~%string make~%string model~%uint32 year~%~%"))
+  (cl:format cl:nil "bool success~%string message~%Vehicle vehicle~%~%================================================================================~%MSG: vehicle_manager/Vehicle~%uint32 id~%string licensePlate~%string make~%string model~%string year~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <FindVehicle-response>))
   (cl:+ 0
      1
