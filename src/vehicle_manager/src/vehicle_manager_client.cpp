@@ -141,7 +141,7 @@ void VehicleManagerClient::display_vehicles_menu()
 
           std::cout << "Old value: " << old_value << std::endl;
           std::cout << "Replacement: ";
-          std::cin >> new_value;
+          getline(std::cin, new_value);
 
           update_vehicle(property, vehicle_id, new_value);
         }
