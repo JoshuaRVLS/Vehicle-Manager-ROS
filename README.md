@@ -13,6 +13,13 @@ Simple ROS vehicle management system.
 ## Quick Start
 
 ```bash
+# Git Clone Repo
+git clone https://github.com/JoshuaRVLS/Vehicle-Manager-ROS
+cd Vehicle-Manager-ROS
+
+# Build Workspace and source the environment 
+catkin_make && source ./devel/setup.bash
+
 # Terminal 1 - Server
 rosrun vehicle_manager vehicle_manager_server
 
